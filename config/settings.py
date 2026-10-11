@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'produtos',
     'rest_framework',
     'drf_spectacular',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,9 @@ MAILERS = {
 REST_FRAMEWORK = {
   # acrescente esta chave ao bloco existente, se ele já existir
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_FILTER_BACKENDS": [
+    "django_filters.rest_framework.DjangoFilterBackend",
+],
 }
 
 SPECTACULAR_SETTINGS = {
