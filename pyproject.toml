@@ -1,0 +1,19 @@
+[project]
+name = "atv-django-bsi4"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "nunes-willi", email = "nuneswillroberto@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "django>=6.1.2",
+]
+
+[project.scripts]
+atv-django-bsi4 = "atv_django_bsi4:main"
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14.0"]
+build-backend = "uv_build"
