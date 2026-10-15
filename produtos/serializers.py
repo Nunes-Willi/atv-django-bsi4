@@ -3,10 +3,9 @@ from decimal import Decimal
 from rest_framework import serializers
 
 from .models import Produto
-
-marca = serializers.CharField(required=True, max_length=50)
-estoque = serializers.IntegerField(required=True)
 class ProdutoSerializer(serializers.ModelSerializer):
+    marca = serializers.CharField(required=True, max_length=50)
+    estoque = serializers.IntegerField(required=True)
     class Meta:
         model = Produto
         fields = ("id", "nome", "preco", "marca", "estoque")
@@ -26,11 +25,11 @@ class ProdutoSerializer(serializers.ModelSerializer):
     
     def validate_marca(self, value):
         marca_limpa = value.strip()
-        if len(marca_limpa) < 0:
+        if len(marca_limpa) < 2:
             raise serializers.ValidationError("A Marca deve possuir pelo menos 2 caracteres")
         return marca_limpa
     
     def validate_estoque(self, value):
         if value < 0:
             raise serializers.ValidationError("A quantia em estouque precisa ser positivo")
-        return 
+        return value
