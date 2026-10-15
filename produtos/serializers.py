@@ -33,3 +33,8 @@ class ProdutoSerializer(serializers.ModelSerializer):
         if value < 0:
             raise serializers.ValidationError("A quantia em estouque precisa ser positivo")
         return value
+    
+    def validate_descricao(self, value):
+        if value is not None and len(value.strip()) > 550:
+            raise serializers.ValidationError("A descrição não pode ultrapassar 550 caracteres.")
+        return value
