@@ -5,10 +5,11 @@ from rest_framework import serializers
 from .models import Produto
 
 marca = serializers.CharField(required=True, max_length=50)
+estoque = serializers.IntegerField(required=True)
 class ProdutoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Produto
-        fields = ("id", "nome", "preco", "marca")
+        fields = ("id", "nome", "preco", "marca", "estoque")
 
     def validate_nome(self, value):
         nome_limpo = value.strip()
@@ -28,3 +29,8 @@ class ProdutoSerializer(serializers.ModelSerializer):
         if len(marca_limpa) < 0:
             raise serializers.ValidationError("A Marca deve possuir pelo menos 2 caracteres")
         return marca_limpa
+    
+    def validate_estoque(self, value):
+        if value < 0:
+            raise serializers.ValidationError("A quantia em estouque precisa ser positivo")
+        return 
